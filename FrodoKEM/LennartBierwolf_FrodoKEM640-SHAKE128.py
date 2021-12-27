@@ -112,12 +112,9 @@ class FrodoKEM640:
         return C
 
     # Alg 5
-    def __sample(self, r):
-        r_bytes = r.to_bytes(2, "little")
-        # 1
-        t = 0
-        for i in range(1, int(self.len_chi / 8)):
-            t += r_bytes[i] * (2 ** (i - 1))
+        def __sample(self, r):
+        # 1 remove r_0 by bitshifting
+        t = r >> 1
         # 2
         e = 0
         # 3
